@@ -1,4 +1,4 @@
-package cmsc436.mobilesurvey
+package cmsc436.mobilesurvey.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import cmsc436.mobilesurvey.R
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         progressBar!!.visibility = View.VISIBLE
 
-        // Todo : Retrieve eamil and password, make sure it's not empty
         val email: String = userEmail?.text.toString()
         val password: String = userPassword?.text.toString()
 
@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        // Todo : Sigin with given Email and Password
         // Retrieve UID for Current User if Login successful and store in intent, for the key UserID
         // Start Intent DashboardActivity if Registration Successful
         mAuth!!.signInWithEmailAndPassword(email, password)
