@@ -57,8 +57,25 @@ class RegistrationActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
                     progressBar!!.visibility = View.GONE
 
-                    val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
-                    startActivity(intent)
+                    mAuth!!.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            progressBar!!.visibility = View.GONE
+                                val userId = mAuth?.currentUser?.uid
+
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Login successful!",
+                                    Toast.LENGTH_LONG
+                                )
+                                    .show()
+                                val intent =
+                                    Intent(this@RegistrationActivity, DashboardActivity::class.java)
+
+                                intent.putExtra("userId", userId)
+
+                                startActivity(intent)
+                        }
+
                 } else {
                     Toast.makeText(applicationContext, "Registration failed! Please try again later", Toast.LENGTH_LONG).show()
                     progressBar!!.visibility = View.GONE

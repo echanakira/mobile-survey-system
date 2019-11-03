@@ -36,7 +36,11 @@ class LoginActivity : AppCompatActivity() {
         loginBtn!!.setOnClickListener { loginUserAccount() }
     }
 
-    private fun loginUserAccount() {
+    fun login(){
+        Log.i(TAG, "Login clicked")
+    }
+
+    public fun loginUserAccount() {
         progressBar!!.visibility = View.VISIBLE
 
         // Todo : Retrieve eamil and password, make sure it's not empty
@@ -81,6 +85,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun initializeUI() {
         userEmail = findViewById(R.id.email)
         userPassword = findViewById(R.id.password)
@@ -92,6 +98,6 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         val UserMail = "com.example.tesla.myhomelibrary.UMail"
         val UserID = "com.example.tesla.myhomelibrary.UID"
-
+        val TAG = "LoginActivity"
     }
 }
