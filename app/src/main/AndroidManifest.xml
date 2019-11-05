@@ -22,6 +22,9 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".DashboardActivity"></activity>
+        <activity android:name=".CreateSurveyActivity">
+
+        </activity>
     </application>
 
 </manifest>
