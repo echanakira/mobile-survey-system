@@ -18,10 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".main.RegistrationActivity" />
         <activity android:name=".main.DashboardActivity"></activity>
+        <activity android:name=".forms.CreateSurveyActivity"></activity>
     </application>
 
 </manifest>
