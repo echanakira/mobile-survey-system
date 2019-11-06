@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 
 class CreateSurveyActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class CreateSurveyActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        //TODO Add this class to the intent filter
         //TODO Actually create the surveys
+        //TODO Link survey to current login
     }
 }

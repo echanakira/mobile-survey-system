@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MobileSurvey</string>
+    <string-array name="survey_type">
+        <item>Restaurant</item>
+        <item>Retail</item>
+    </string-array>
 </resources>
