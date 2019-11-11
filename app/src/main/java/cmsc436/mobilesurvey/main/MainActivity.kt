@@ -12,15 +12,18 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import cmsc436.mobilesurvey.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
     internal var registerBtn: Button? = null
     internal var loginBtn: Button? = null
     private var progressBar: ProgressBar? = null
-    private var mAuth: FirebaseAuth? = null
     private var userEmail: EditText? = null
     private var userPassword: EditText? = null
+
+    val db = FirebaseFirestore.getInstance()
+    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +46,22 @@ class MainActivity : AppCompatActivity() {
 
         // if user is signed in, don't show login page
         if (userId != null) {
-            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
-            intent.putExtra("userId", userId)
-            startActivity(intent)
+            // attempt to get their document. If doc exists, proceed. if not, show error and don't sign in
+            val docRef = db.collection("users").document(userId)
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+                        intent.putExtra("userId", userId)
+                        startActivity(intent)
+                    } else {
+                        mAuth!!.signOut()
+                        Log.d(TAG, "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "get failed with ", exception)
+                }
         }
     }
 

@@ -12,6 +12,7 @@ import android.widget.Toast
 import cmsc436.mobilesurvey.R
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegistrationActivity : AppCompatActivity() {
 
@@ -20,7 +21,9 @@ class RegistrationActivity : AppCompatActivity() {
     private var regBtn: Button? = null
     private var progressBar: ProgressBar? = null
 
+    val db = FirebaseFirestore.getInstance()
     private var mAuth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -52,30 +55,46 @@ class RegistrationActivity : AppCompatActivity() {
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
-                    progressBar!!.visibility = View.GONE
+                    val data = hashMapOf(
+                        "name" to ""
+                    )
 
-                    mAuth!!.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
+                    val userId = mAuth?.currentUser?.uid!!
+
+                    db.collection("users").document(userId).set(data)
+                        .addOnSuccessListener { documentReference ->
+                            Toast.makeText(
+                                applicationContext,
+                                "Registration successful!",
+                                Toast.LENGTH_LONG
+                            ).show()
                             progressBar!!.visibility = View.GONE
-                                val userId = mAuth?.currentUser?.uid
 
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Login successful!",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
-                                val intent =
-                                    Intent(this@RegistrationActivity, DashboardActivity::class.java)
+                            mAuth!!.signInWithEmailAndPassword(email, password)
+                                .addOnCompleteListener { task ->
+                                    progressBar!!.visibility = View.GONE
 
-                                intent.putExtra("userId", userId)
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Login successful!",
+                                        Toast.LENGTH_LONG
+                                    )
+                                        .show()
+                                    val intent =
+                                        Intent(this@RegistrationActivity, DashboardActivity::class.java)
 
-                                startActivity(intent)
-                        }
+                                    intent.putExtra("userId", userId)
+
+                                    startActivity(intent)
+                                }
+                    }
 
                 } else {
-                    Toast.makeText(applicationContext, "Registration failed! Please try again later", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "Registration failed! Please try again later",
+                        Toast.LENGTH_LONG
+                    ).show()
                     progressBar!!.visibility = View.GONE
                 }
             }
