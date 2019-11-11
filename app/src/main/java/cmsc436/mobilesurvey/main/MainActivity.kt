@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     internal var loginBtn: Button? = null
     private var progressBar: ProgressBar? = null
     private var mAuth: FirebaseAuth? = null
-    private var  userEmail: EditText? = null
-    private var  userPassword: EditText? = null
+    private var userEmail: EditText? = null
+    private var userPassword: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +36,20 @@ class MainActivity : AppCompatActivity() {
         loginBtn!!.setOnClickListener {
             loginUserAccount()
         }
+
+        mAuth = FirebaseAuth.getInstance()
+
+        var userId = mAuth!!.currentUser?.uid
+
+        // if user is signed in, don't show login page
+        if (userId != null) {
+            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
+        }
     }
 
     fun loginUserAccount() {
-        mAuth = FirebaseAuth.getInstance()
 
         progressBar!!.visibility = View.VISIBLE
 
@@ -95,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
     }
 
-    companion object{
+    companion object {
         val TAG = "MainActivity"
     }
 }
