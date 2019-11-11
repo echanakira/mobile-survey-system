@@ -23,6 +23,12 @@ class DashboardActivity : AppCompatActivity() {
         logoutButton = findViewById(R.id.logout)
         logoutButton!!.setOnClickListener { logout() }
 
+        createFormButton = findViewById(R.id.form)
+        createFormButton!!.setOnClickListener {
+            val intent = Intent(this, CreateSurveyActivity::class.java)
+            startActivity(intent)
+        }
+
         userId = mAuth!!.currentUser!!.uid
     }
 
