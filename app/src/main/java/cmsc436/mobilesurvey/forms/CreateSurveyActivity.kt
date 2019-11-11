@@ -3,12 +3,12 @@ package cmsc436.mobilesurvey.forms
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-<<<<<<< HEAD:app/src/main/java/cmsc436/mobilesurvey/CreateSurveyActivity.kt
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-=======
+
 import cmsc436.mobilesurvey.R
->>>>>>> f13195bde3b2f4697c4c3908bbc398ad06e7a659:app/src/main/java/cmsc436/mobilesurvey/forms/CreateSurveyActivity.kt
+
 
 
 class CreateSurveyActivity : AppCompatActivity() {
