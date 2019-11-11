@@ -55,11 +55,12 @@ class RegistrationActivity : AppCompatActivity() {
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val data = hashMapOf(
-                        "name" to ""
-                    )
-
                     val userId = mAuth?.currentUser?.uid!!
+
+                    val data = hashMapOf(
+                        "name" to "",
+                        "email" to email
+                    )
 
                     db.collection("users").document(userId).set(data)
                         .addOnSuccessListener { documentReference ->
