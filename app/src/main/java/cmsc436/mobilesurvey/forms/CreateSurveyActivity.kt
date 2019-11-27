@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.widget.*
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+
+
 
 import cmsc436.mobilesurvey.R
 
@@ -15,6 +16,7 @@ class CreateSurveyActivity : AppCompatActivity() {
 
     private var createButton: Button? = null
     private var name: EditText? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class CreateSurveyActivity : AppCompatActivity() {
             R.array.survey_type,android.R.layout.simple_spinner_dropdown_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+
 
         //TODO Actually create the surveys
         //TODO Link survey to current login
