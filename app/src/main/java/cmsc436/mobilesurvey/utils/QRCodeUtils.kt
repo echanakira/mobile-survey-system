@@ -4,7 +4,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.util.Base64
 import android.util.Log
-import android.widget.Toast
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.forms.QRGeneratorFragment
 import com.google.zxing.BarcodeFormat
@@ -14,13 +13,11 @@ import com.google.zxing.common.BitMatrix
 
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.nio.ByteBuffer
-
 
 class QRCodeUtils{
 
-    private var mQRGeneratorFragment: QRGeneratorFragment? = null
-    private val directory = "/QRcodeDemonuts"
+    var white = -0x1
+    var black = -0x1000000
 
     fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
         var baos: ByteArrayOutputStream? = null
@@ -44,18 +41,6 @@ class QRCodeUtils{
     }
 
     /**
-     * Converts bitmap to the byte array without compression
-     * @param bitmap source bitmap
-     * @return result byte array
-     */
-    fun convertBitmapToByteArrayUncompressed(bitmap: Bitmap): ByteArray {
-        val byteBuffer = ByteBuffer.allocate(bitmap.byteCount)
-        bitmap.copyPixelsToBuffer(byteBuffer)
-        byteBuffer.rewind()
-        return byteBuffer.array()
-    }
-
-    /**
      * Converts compressed byte array to bitmap
      * @param src source array
      * @return result bitmap
@@ -75,11 +60,6 @@ class QRCodeUtils{
         }
     }
 
-    fun stringToBitmap(str: String): Bitmap{
-        val imageBytes = Base64.decode(str, 0)
-        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-    }
-
     fun TextToImageEncode(Value: String): Bitmap? {
         val bitMatrix: BitMatrix
         try {
@@ -88,32 +68,21 @@ class QRCodeUtils{
                 BarcodeFormat.QR_CODE,
                 QRGeneratorFragment.QRcodeWidth, QRGeneratorFragment.QRcodeWidth, null
             )
-
         } catch (Illegalargumentexception: IllegalArgumentException) {
-
             return null
         }
 
         val bitMatrixWidth = bitMatrix.getWidth()
-
         val bitMatrixHeight = bitMatrix.getHeight()
-
         val pixels = IntArray(bitMatrixWidth * bitMatrixHeight)
 
         for (y in 0 until bitMatrixHeight) {
             val offset = y * bitMatrixWidth
-
             for (x in 0 until bitMatrixWidth) {
-                //TODO(elijah): Fix?
-                pixels[offset + x] = if (bitMatrix.get(x, y))
-                   R.color.black
-                else
-                    R.color.white
+                pixels[offset + x] = if (bitMatrix.get(x, y)) black else white
             }
         }
-        val bitmap =
-            Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444)
-
+        val bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444)
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight)
         return bitmap
     }

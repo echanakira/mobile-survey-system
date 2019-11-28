@@ -8,12 +8,14 @@ import android.util.Base64
 class SurveyDatabaseHandler{
 
 
-    val database = FirebaseDatabase.getInstance().reference
+//    val database = FirebaseDatabase.getInstance().reference
+    val db = FirebaseDatabase.getInstance().getReference("forms")
+
 
     fun addFormToDatabase(name: String, content: String, qrcode: ByteArray){
         val code = Base64.encodeToString(qrcode, Base64.DEFAULT)
         val form = FormData(name, content, code)
-        database.child(name).child(form.id).setValue(form)
+        db.child(name).child(form.id).setValue(form)
         Log.i("TAG", "Form " + form.id + " added")
     }
 
