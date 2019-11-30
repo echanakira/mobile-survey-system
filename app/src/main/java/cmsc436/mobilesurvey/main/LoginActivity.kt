@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         loginBtn!!.setOnClickListener { loginUserAccount() }
     }
 
-    fun login(){
+    fun login() {
         Log.i(TAG, "Login clicked")
     }
 
@@ -82,7 +82,6 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
-
 
 
     private fun initializeUI() {

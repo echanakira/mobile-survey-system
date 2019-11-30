@@ -12,6 +12,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var surveyType: String? = null
+    private var selectedPlaceName: String? = null
     private var selectedPlaceId: String? = null
     private var users: ArrayList<User>? = arrayListOf()
     private var spinnerValues: ArrayList<String>? = arrayListOf()
@@ -23,7 +24,7 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var answerFour: String? = null // fourth question
     private var answerFive: String? = null // fifth question
     private var answerSix: EditText? = null
-    private var additionalComments: EditText? = null
+    private var answerSeven: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,21 +32,21 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val restaurant: String = getFirstWord(getString(R.string.restaurant))
         val retail: String = getFirstWord(getString(R.string.retail))
         val amusement: String = getFirstWord(getString(R.string.amusement))
-        val type:String = intent.getStringExtra("type")
+        val type: String = intent.getStringExtra("type")
 
         when (type) {
             restaurant -> {
-                surveyType=restaurant
+                surveyType = restaurant
                 setContentView(R.layout.activity_restaurant)
             }
 
             retail -> {
-                surveyType=retail
+                surveyType = retail
                 setContentView(R.layout.activity_retail)
             }
 
             amusement -> {
-                surveyType=amusement
+                surveyType = amusement
                 setContentView(R.layout.activity_amusement)
             }
 
@@ -96,59 +97,34 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val radio: RadioButton = findViewById(checkedId)
             var value = radio.text
             answerOne = value as String?
-
-            Toast.makeText(
-                applicationContext, "$value",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         two_group.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = findViewById(checkedId)
             var value = radio.text
             answerTwo = value as String?
-
-            Toast.makeText(
-                applicationContext, "$value",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         three_group.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = findViewById(checkedId)
             var value = radio.text
             answerThree = value as String?
-
-            Toast.makeText(
-                applicationContext, "$value",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         four_group.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = findViewById(checkedId)
             var value = radio.text
-            answerFour= value as String?
-
-            Toast.makeText(
-                applicationContext, "$value",
-                Toast.LENGTH_SHORT
-            ).show()
+            answerFour = value as String?
         }
 
         five_group.setOnCheckedChangeListener { _, checkedId ->
             val radio: RadioButton = findViewById(checkedId)
             var value = radio.text
             answerFive = value as String?
-
-            Toast.makeText(
-                applicationContext, "$answerFive",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         answerSix = findViewById(R.id.six_text)
-        additionalComments = findViewById(R.id.seven_comments)
+        answerSeven = findViewById(R.id.seven_comments)
 
         submitButton = findViewById(R.id.submit)
 
@@ -161,10 +137,13 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         // parent.getItemAtPosition(pos) to get value
         var value = parent.getItemAtPosition(pos)
-        selectedPlaceId = value.toString()
+        selectedPlaceName = value.toString()
 
-        Toast.makeText(applicationContext, "$value", Toast.LENGTH_SHORT)
-            .show()
+        users!!.forEach { user ->
+            if (user.name!!.equals(selectedPlaceName)) {
+                selectedPlaceId = user.id as String
+            }
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -176,8 +155,8 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             answerTwo == null ||
             answerThree == null ||
             answerFour == null ||
-            answerFive == null) {
-
+            answerFive == null
+        ) {
             Toast.makeText(
                 this, "Please fill out all questions",
                 Toast.LENGTH_SHORT
@@ -185,15 +164,32 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             return
         }
 
-        val noRecComment: String = answerSix!!.text.toString()
-        val addComment: String = additionalComments!!.text.toString()
+        val six: String = answerSix!!.text.toString()
+        val seven: String = answerSeven!!.text.toString()
 
-        surveyType?.let { Database.submitForm(applicationContext, it, HashMap()) }
+        val data = hashMapOf(
+            "1" to answerOne,
+            "2" to answerTwo,
+            "3" to answerThree,
+            "4" to answerFour,
+            "5" to answerFour,
+            "6" to six,
+            "7" to seven,
+            "place_id" to selectedPlaceId,
+            "place_name" to selectedPlaceName,
+            "type" to surveyType
+        )
 
-        // Update one field, creating the document if it does not already exist.
-//        val data = hashMapOf("capital" to true)
-//
-//        db.collection("cities").document("BJ")
-//            .set(data, SetOptions.merge())
+        Database.submitSurvey(
+            applicationContext,
+            surveyType,
+            selectedPlaceName,
+            selectedPlaceId,
+            data
+        )
+
+        finish()
+
+
     }
 }

@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import cmsc436.mobilesurvey.R
+import cmsc436.mobilesurvey.forms.SurveyActivity
+import cmsc436.mobilesurvey.utils.getFirstWord
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+    private var selectedSurvey: String? = null
+    private var viewSurveyButton: Button? = null
     internal var registerBtn: Button? = null
     internal var loginBtn: Button? = null
     private var progressBar: ProgressBar? = null
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initializeViews()
+        initializeSpinner()
 
         registerBtn!!.setOnClickListener {
             Log.i(TAG, "DEBUG INFO: Clicked Register")
@@ -63,6 +64,64 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, "get failed with ", exception)
                 }
         }
+    }
+
+    fun initializeSpinner() {
+        val spinner = findViewById<Spinner>(R.id.test_spinner)
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.survey_type, android.R.layout.simple_spinner_dropdown_item
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.onItemSelectedListener = this
+        spinner.adapter = adapter
+
+        viewSurveyButton = findViewById(R.id.view_survey)
+        viewSurveyButton!!.setOnClickListener {
+            openSurvey()
+        }
+    }
+
+    private fun openSurvey() {
+        var intent: Intent?
+
+        val restaurant: String = getString(R.string.restaurant)
+        val retail: String = getString(R.string.retail)
+        val amusement: String = getString(R.string.amusement)
+
+        intent = Intent(this, SurveyActivity::class.java)
+
+        when (selectedSurvey) {
+            restaurant -> {
+                intent.putExtra("type", getFirstWord(restaurant))
+            }
+
+            retail -> {
+                intent.putExtra("type", getFirstWord(retail))
+
+            }
+
+            amusement -> {
+                intent.putExtra("type", getFirstWord(amusement))
+            }
+
+            else -> {
+                return
+            }
+        }
+
+        startActivity(intent)
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+        // parent.getItemAtPosition(pos) to get value
+        var value = parent.getItemAtPosition(pos)
+        selectedSurvey = value.toString()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Another interface callback
     }
 
     fun loginUserAccount() {

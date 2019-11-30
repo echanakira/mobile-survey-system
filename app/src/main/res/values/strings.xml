@@ -11,6 +11,10 @@
         <item>@string/amusement</item>
     </string-array>
 
+    <string name="restaurant_name">Select restaurant name</string>
+    <string name="retail_name">Select retail store name</string>
+    <string name="amusement_name">Select amusement park name</string>
+
     <string name="Name">Name</string>
     <string name="Create">Create</string>
 

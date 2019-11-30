@@ -12,6 +12,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amusement_name" />
+
+        <Spinner
+            android:id="@+id/restaurant_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
             android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
