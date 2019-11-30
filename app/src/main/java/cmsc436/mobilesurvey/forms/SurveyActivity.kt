@@ -9,6 +9,10 @@ import kotlinx.android.synthetic.main.activity_restaurant.*
 import cmsc436.mobilesurvey.utils.*
 import cmsc436.mobilesurvey.utils.Database.db
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
+import java.time.LocalDateTime
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var surveyType: String? = null
@@ -177,7 +181,8 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "7" to seven,
             "place_id" to selectedPlaceId,
             "place_name" to selectedPlaceName,
-            "type" to surveyType
+            "type" to surveyType,
+            "timestamp" to FieldValue.serverTimestamp()
         )
 
         Database.submitSurvey(

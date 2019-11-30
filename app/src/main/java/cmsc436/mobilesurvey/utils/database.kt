@@ -16,7 +16,7 @@ object Database {
         surveyType: String?,
         placeName: String?,
         placeId: String?,
-        data: HashMap<String, String?>
+        data: HashMap<String, Any?>
     ) {
 
         Toast.makeText(
