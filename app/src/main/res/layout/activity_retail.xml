@@ -15,7 +15,7 @@
             android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1) How difficult was it to find what you were looking for?" />
+            android:text="@string/retail_one" />
 
         <RadioGroup
             android:id="@+id/one_group"
@@ -26,19 +26,19 @@
                 android:id="@+id/one_not"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Not Difficult" />
+                android:text="@string/Not_Difficult" />
 
             <RadioButton
                 android:id="@+id/one_somewhat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Somewhat Difficult" />
+                android:text="@string/Somewhat" />
 
             <RadioButton
                 android:id="@+id/one_difficult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Difficult" />
+                android:text="@string/Difficult" />
 
         </RadioGroup>
 
@@ -46,7 +46,7 @@
             android:id="@+id/two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2) How would you rate the quality of the service?" />
+            android:text="@string/retail_two" />
 
         <RadioGroup
             android:id="@+id/two_group"
@@ -57,38 +57,38 @@
                 android:id="@+id/two_bad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bad" />
+                android:text="@string/Bad" />
 
             <RadioButton
                 android:id="@+id/two_mediocre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mediocre" />
+                android:text="@string/Mediocre" />
 
             <RadioButton
                 android:id="@+id/two_okay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Okay" />
+                android:text="@string/Okay" />
 
             <RadioButton
                 android:id="@+id/two_good"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Good" />
+                android:text="@string/Good" />
 
             <RadioButton
                 android:id="@+id/two_amazing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Amazing" />
+                android:text="@string/Amazing" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3)How would you rate the cleanliness of the store?" />
+            android:text="@string/retail_three" />
 
         <RadioGroup
             android:id="@+id/three_group"
@@ -99,38 +99,38 @@
                 android:id="@+id/three_bad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bad" />
+                android:text="@string/Bad" />
 
             <RadioButton
                 android:id="@+id/three_mediocre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mediocre" />
+                android:text="@string/Mediocre" />
 
             <RadioButton
                 android:id="@+id/three_okay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Okay" />
+                android:text="@string/Okay" />
 
             <RadioButton
                 android:id="@+id/three_good"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Good" />
+                android:text="@string/Good" />
 
             <RadioButton
                 android:id="@+id/three_amazing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Amazing" />
+                android:text="@string/Amazing" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4) How would you rate the atmosphere of the store?" />
+            android:text="@string/retail_four" />
 
         <RadioGroup
             android:id="@+id/four_group"
@@ -141,38 +141,38 @@
                 android:id="@+id/four_bad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bad" />
+                android:text="@string/Bad"/>
 
             <RadioButton
                 android:id="@+id/four_mediocre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mediocre" />
+                android:text="@string/Mediocre" />
 
             <RadioButton
                 android:id="@+id/four_okay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Okay" />
+                android:text="@string/Okay" />
 
             <RadioButton
                 android:id="@+id/four_good"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Good" />
+                android:text="@string/Good" />
 
             <RadioButton
                 android:id="@+id/four_amazing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Amazing" />
+                android:text="@string/Amazing" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/five"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5) Would you recommend this store to friends and family?" />
+            android:text="@string/retail_five" />
 
         <RadioGroup
             android:id="@+id/five_group"
@@ -183,20 +183,20 @@
                 android:id="@+id/five_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes" />
+                android:text="@string/Yes" />
 
             <RadioButton
                 android:id="@+id/five_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No" />
+                android:text="@string/No" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/six"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="6) If no, why not?" />
+            android:text="@string/retail_six"/>
 
         <EditText
             android:id="@+id/six_text"
@@ -210,7 +210,7 @@
             android:id="@+id/seven"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Additional Comments" />
+            android:text="@string/comments" />
 
         <EditText
             android:id="@+id/seven_comments"
@@ -224,7 +224,7 @@
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit" />
+            android:text="@string/submit" />
 
 
     </LinearLayout>
