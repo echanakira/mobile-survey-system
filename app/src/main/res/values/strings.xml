@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">MobileSurvey</string>
+
+    <string name="restaurant">Restaurant</string>
+    <string name="retail">Retail</string>
+    <string name="amusement">Amusement Park</string>
+
     <string-array name="survey_type">
-        <item>Restaurant</item>
-        <item>Retail</item>
-        <item>Amusement Park</item>
+        <item>@string/restaurant</item>
+        <item>@string/retail</item>
+        <item>@string/amusement</item>
     </string-array>
 
     <string name="Name">Name</string>
@@ -40,9 +45,8 @@
     <string name="amusement_two">2) How would you rate the quality of the staff?</string>
     <string name="amusement_three">3) How would you rate the cleanliness of the park?</string>
     <string name="amusement_four">4) Did you find the park worth the price of admission?</string>
-    <string name="amusement_five">5) Why, or why not?</string>
-    <string name="amusement_six">6) Would you want to come back for another visit?</string>
-    <string name="amusement_seven">7) Why,or why not?</string>
+    <string name="amusement_five">5) Would you want to come back for another visit?</string>
+    <string name="amusement_six">6) Why, or why not?</string>
 
     <string name="comments">Additional Comments</string>
     <string name="submit">Submit</string>

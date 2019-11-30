@@ -11,7 +11,7 @@ class AmusementActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_amusementpark)
+        setContentView(R.layout.activity_amusement)
 
         submitButton = findViewById(R.id.submit)
     }
