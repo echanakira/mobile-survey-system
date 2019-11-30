@@ -15,7 +15,7 @@
             android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant_one" />
+            android:text="@string/amusement_one" />
 
         <RadioGroup
             android:id="@+id/one_group"
@@ -57,7 +57,7 @@
             android:id="@+id/two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant_two" />
+            android:text="@string/amusement_two" />
 
         <RadioGroup
             android:id="@+id/two_group"
@@ -99,7 +99,7 @@
             android:id="@+id/three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant_three" />
+            android:text="@string/amusement_three" />
 
         <RadioGroup
             android:id="@+id/three_group"
@@ -141,7 +141,7 @@
             android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant_four" />
+            android:text="@string/amusement_four" />
 
         <RadioGroup
             android:id="@+id/four_group"
@@ -149,68 +149,68 @@
             android:layout_height="match_parent">
 
             <RadioButton
-                android:id="@+id/four_bad"
+                android:id="@+id/four_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Bad" />
+                android:text="@string/Yes" />
 
             <RadioButton
-                android:id="@+id/four_mediocre"
+                android:id="@+id/four_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Mediocre" />
+                android:text="@string/No" />
 
-            <RadioButton
-                android:id="@+id/four_okay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Okay" />
-
-            <RadioButton
-                android:id="@+id/four_good"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Good" />
-
-            <RadioButton
-                android:id="@+id/four_amazing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Amazing" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/five"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant_five" />
+            android:text="@string/amusement_five" />
 
-        <RadioGroup
-            android:id="@+id/five_group"
+
+        <EditText
+            android:id="@+id/five_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
 
-            <RadioButton
-                android:id="@+id/five_yes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Yes" />
-
-            <RadioButton
-                android:id="@+id/five_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/No" />
-        </RadioGroup>
 
         <TextView
             android:id="@+id/six"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant_six" />
+            android:text="@string/amusement_six" />
+
+        <RadioGroup
+            android:id="@+id/six_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/six_yes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Yes" />
+
+            <RadioButton
+                android:id="@+id/six_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/No" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/seven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amusement_seven" />
 
         <EditText
-            android:id="@+id/six_text"
+            android:id="@+id/seven_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -218,13 +218,13 @@
             android:inputType="textMultiLine" />
 
         <TextView
-            android:id="@+id/seven"
+            android:id="@+id/eight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/comments" />
 
         <EditText
-            android:id="@+id/seven_comments"
+            android:id="@+id/eight_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

@@ -4,6 +4,10 @@
         <item>Restaurant</item>
         <item>Retail</item>
     </string-array>
+
+    <string name="Name">Name</string>
+    <string name="Create">Create</string>
+
     <string name="Bad">Bad</string>
     <string name="Mediocre">Mediocre</string>
     <string name="Okay">Okay</string>
@@ -30,6 +34,14 @@
     <string name="restaurant_four">4) How would you rate the atmosphere of the restaurant?</string>
     <string name="restaurant_five">5) Would you recommend this restaurant to friends and family?</string>
     <string name="restaurant_six">6) If no, why not?</string>
+
+    <string name="amusement_one">1) How would you rate the quality of the attractions?</string>
+    <string name="amusement_two">2) How would you rate the quality of the staff?</string>
+    <string name="amusement_three">3) How would you rate the cleanliness of the park?</string>
+    <string name="amusement_four">4) Did you find the park worth the price of admission?</string>
+    <string name="amusement_five">5) Why, or why not?</string>
+    <string name="amusement_six">6) Would you want to come back for another visit?</string>
+    <string name="amusement_seven">7) Why,or why not?</string>
 
     <string name="comments">Additional Comments</string>
     <string name="submit">Submit</string>

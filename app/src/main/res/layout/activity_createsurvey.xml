@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="@string/Name"
+        android:inputType="textPersonName" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -21,5 +21,5 @@
         android:id="@+id/create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create" />
+        android:text="@string/Create" />
 </LinearLayout>
