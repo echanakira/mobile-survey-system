@@ -3,6 +3,7 @@
     <string-array name="survey_type">
         <item>Restaurant</item>
         <item>Retail</item>
+        <item>Amusement Park</item>
     </string-array>
 
     <string name="Name">Name</string>
