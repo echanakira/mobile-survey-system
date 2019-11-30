@@ -22,6 +22,8 @@
         <activity android:name=".main.RegistrationActivity" />
         <activity android:name=".main.DashboardActivity"></activity>
         <activity android:name=".forms.CreateSurveyActivity"></activity>
+        <activity android:name=".forms.RestaurantActivity"></activity>
+        <activity android:name=".forms.RetailActivity"></activity>
     </application>
 
 </manifest>

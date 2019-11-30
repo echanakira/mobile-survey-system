@@ -7,9 +7,12 @@ import android.widget.Button
 import android.widget.Toast
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.forms.CreateSurveyActivity
+import cmsc436.mobilesurvey.forms.RestaurantActivity
+import cmsc436.mobilesurvey.forms.RetailActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class DashboardActivity : AppCompatActivity() {
+    private var testButton: Button? = null
     private var logoutButton: Button? = null
     private var createFormButton: Button? = null
     private var mAuth: FirebaseAuth? = null
@@ -23,9 +26,16 @@ class DashboardActivity : AppCompatActivity() {
         logoutButton = findViewById(R.id.logout)
         logoutButton!!.setOnClickListener { logout() }
 
+
         createFormButton = findViewById(R.id.form)
         createFormButton!!.setOnClickListener {
             val intent = Intent(this, CreateSurveyActivity::class.java)
+            startActivity(intent)
+        }
+
+        testButton = findViewById(R.id.test)
+        testButton!!.setOnClickListener {
+            val intent = Intent(this, RestaurantActivity::class.java)
             startActivity(intent)
         }
 
