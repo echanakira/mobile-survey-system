@@ -17,27 +17,23 @@ class CreateSurveyActivity : AppCompatActivity() {
 
     private var createButton: Button? = null
     private var name: EditText? = null
-
-
-    internal var bitmap: Bitmap? = null
     private var QRCodeUtils: QRCodeUtils? = null
-
     private var db: SurveyDatabaseHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("TAG", "INFO: INSIDE ON CREATE")
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_createsurvey)
 
-        db = SurveyDatabaseHandler()
         name = findViewById(R.id.name)
         createButton = findViewById(R.id.create)
         QRCodeUtils = QRCodeUtils()
+        db = SurveyDatabaseHandler()
+
+        db!!.setupDB()
 
         //button will generate code and store it in the database
         createButton!!.setOnClickListener {
-
             val qrcode = QRCodeUtils!!.generateQRCode(name!!.text.toString())
             val bytes = QRCodeUtils!!.convertBitmapToByteArray(qrcode!!)
             db!!.addFormToDatabase(name!!.text.toString(), "", bytes)
@@ -46,6 +42,7 @@ class CreateSurveyActivity : AppCompatActivity() {
                 "QRCode " + QRCodeUtils!!.convertCompressedByteArrayToBitmap(bytes) + " stringified",
                 Toast.LENGTH_SHORT
             ).show()
+            db!!.getFormFromDatabase()
         }
 
         val spinner = findViewById<Spinner>(R.id.spinner)
