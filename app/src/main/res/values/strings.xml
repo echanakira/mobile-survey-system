@@ -17,6 +17,8 @@
 
     <string name="Name">Name</string>
     <string name="Create">Create</string>
+    <string name="Login">Login</string>
+    <string name="Scan">Scan QR Code</string>
 
     <string name="Bad">Bad</string>
     <string name="Mediocre">Mediocre</string>

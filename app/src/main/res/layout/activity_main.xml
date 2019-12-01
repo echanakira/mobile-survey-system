@@ -60,7 +60,7 @@
         android:id="@+id/register"
         android:layout_width="206dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
+        android:layout_below="@+id/scan"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="99dp"
