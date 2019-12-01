@@ -19,6 +19,8 @@ class SurveyDatabaseHandler{
     val db = FirebaseDatabase.getInstance().getReference("forms")
     private var QRCodeUtils: QRCodeUtils? = QRCodeUtils()
 
+
+    //TODO: PULL FROM OTHER DATABASE
     fun addFormToDatabase(name: String, content: String, qrcode: ByteArray){
         val code = Base64.encodeToString(qrcode, Base64.DEFAULT)
         val form = FormData(name, content, code)

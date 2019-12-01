@@ -16,7 +16,6 @@ class DashboardActivity : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private var createBtn: Button? = null
     private var scanBtn: ImageButton? = null
-//    internal lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +23,6 @@ class DashboardActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         logoutButton = findViewById(R.id.logout)
         logoutButton!!.setOnClickListener { logout() }
-//        userId = intent.getStringExtra("userId")
 
         createBtn = findViewById(R.id.form)
         createBtn!!.setOnClickListener{
@@ -32,19 +30,13 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        tvresult = findViewById(R.id.tvresult) as TextView
         scanBtn = findViewById(R.id.scan)
         scanBtn!!.setOnClickListener {
             val intent = Intent(applicationContext, ScanActivity::class.java)
             startActivityForResult(intent, 0)
-
         }
 
 
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     private fun logout() {
@@ -52,7 +44,4 @@ class DashboardActivity : AppCompatActivity() {
         finish()
     }
 
-    companion object {
-        var tvresult: TextView? = null
-    }
 }
