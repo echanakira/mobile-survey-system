@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_responses.*
 
 class ResponsesActivity : AppCompatActivity() {
     private var mAdapter: ResponseAdapter? = null
-//    private lateinit var recyclerView: RecyclerView
+    //    private lateinit var recyclerView: RecyclerView
 //    private lateinit var viewAdapter: RecyclerView.Adapter<*>
 //    private lateinit var viewManager: RecyclerView.LayoutManager
     private var firestoreListener: ListenerRegistration? = null
@@ -52,7 +52,7 @@ class ResponsesActivity : AppCompatActivity() {
                 }
 
                 mAdapter = ResponseAdapter(responseList)
-                responses_view.adapter=mAdapter
+                responses_view.adapter = mAdapter
             })
     }
 
@@ -72,8 +72,8 @@ class ResponsesActivity : AppCompatActivity() {
 
                     mAdapter = ResponseAdapter(responseList)
                     val mLayoutManager = LinearLayoutManager(applicationContext)
-                    responses_view.layoutManager=mLayoutManager
-                    responses_view.adapter=mAdapter
+                    responses_view.layoutManager = mLayoutManager
+                    responses_view.adapter = mAdapter
                 } else {
 //                    Log.d(TAG, "Error getting documents: ", task.exception)
                 }

@@ -6,17 +6,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import cmsc436.mobilesurvey.R
-import cmsc436.mobilesurvey.forms.CreateSurveyActivity
 import cmsc436.mobilesurvey.utils.*
 import cmsc436.mobilesurvey.main.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
+import cmsc436.mobilesurvey.R
+import cmsc436.mobilesurvey.forms.CreateSurveyActivity
+import cmsc436.mobilesurvey.utils.ScanActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class DashboardActivity : AppCompatActivity() {
     private var logoutButton: Button? = null
-    private var viewResponsesButton: Button?=null
+    private var viewResponsesButton: Button? = null
     private var createFormButton: Button? = null
     private var mAuth: FirebaseAuth? = null
+    private var createBtn: Button? = null
+    private var scanBtn: ImageButton? = null
+
 
     internal lateinit var userId: String
 
@@ -40,6 +47,16 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         userId = mAuth!!.currentUser!!.uid
+
+
+        tvresult = findViewById(R.id.tvresult) as TextView
+        scanBtn = findViewById(R.id.scan)
+        scanBtn!!.setOnClickListener {
+            val intent = Intent(this@DashboardActivity, ScanActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
     override fun onStart() {
@@ -50,5 +67,9 @@ class DashboardActivity : AppCompatActivity() {
     private fun logout() {
         mAuth!!.signOut()
         finish()
+    }
+
+    companion object {
+        var tvresult: TextView? = null
     }
 }

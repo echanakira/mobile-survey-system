@@ -31,7 +31,7 @@ class ResponseAdapter(private val responseList: List<Response>) :
     ): ResponseAdapter.ViewHolder {
         val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_note, parent, false)
 
-        return ViewHolder(view )
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
