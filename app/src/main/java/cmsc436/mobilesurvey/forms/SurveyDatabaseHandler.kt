@@ -1,4 +1,5 @@
 package cmsc436.mobilesurvey.forms
+import android.graphics.Bitmap
 import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import cmsc436.mobilesurvey.data.FormData
@@ -16,7 +17,7 @@ class SurveyDatabaseHandler{
     lateinit var decodedForms: MutableList<DecodedFormData>
 
     val db = FirebaseDatabase.getInstance().getReference("forms")
-    private var QRCodeUtils: QRCodeUtils? = null
+    private var QRCodeUtils: QRCodeUtils? = QRCodeUtils()
 
     fun addFormToDatabase(name: String, content: String, qrcode: ByteArray){
         val code = Base64.encodeToString(qrcode, Base64.DEFAULT)
@@ -24,9 +25,9 @@ class SurveyDatabaseHandler{
         db.child(name).child(form.id).setValue(form)
     }
 
-    fun getFormFromDatabase(){
+    fun getFormFromDatabase(): Bitmap {
         Log.i("TAG","INFO: " + decodedForms[0] + " was added")
-//        QRCodeUtils!!.convertCompressedByteArrayToBitmap(decodedForms[0].qrcode)
+        return QRCodeUtils!!.convertCompressedByteArrayToBitmap(decodedForms[0].qrcode)
     }
 
     fun setupDB(){

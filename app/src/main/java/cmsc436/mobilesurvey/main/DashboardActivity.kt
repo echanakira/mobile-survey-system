@@ -8,8 +8,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.forms.CreateSurveyActivity
-import cmsc436.mobilesurvey.utils.ScanActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.zxing.integration.android.IntentIntegrator
 
 class DashboardActivity : AppCompatActivity() {
     private var logoutButton: Button? = null
@@ -37,8 +37,9 @@ class DashboardActivity : AppCompatActivity() {
         tvresult = findViewById(R.id.tvresult) as TextView
         scanBtn = findViewById(R.id.scan)
         scanBtn!!.setOnClickListener {
-            val intent = Intent(this@DashboardActivity, ScanActivity::class.java)
-            startActivity(intent)
+            val intent = Intent(applicationContext, ScanActivity::class.java)
+            startActivityForResult(intent, 0)
+
         }
 
 

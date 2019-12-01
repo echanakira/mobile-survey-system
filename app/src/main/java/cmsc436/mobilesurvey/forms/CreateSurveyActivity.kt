@@ -8,6 +8,9 @@ import android.widget.*
 
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.utils.QRCodeUtils
+import com.google.android.gms.vision.Frame
+import com.google.android.gms.vision.barcode.Barcode
+import com.google.android.gms.vision.barcode.BarcodeDetector
 
 class CreateSurveyActivity : AppCompatActivity() {
 
@@ -16,9 +19,14 @@ class CreateSurveyActivity : AppCompatActivity() {
     }
 
     private var createButton: Button? = null
+    private var scanBtn: Button? = null
+
     private var name: EditText? = null
     private var QRCodeUtils: QRCodeUtils? = null
     private var db: SurveyDatabaseHandler? = null
+
+    private var iv: ImageView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("TAG", "INFO: INSIDE ON CREATE")
@@ -43,21 +51,20 @@ class CreateSurveyActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             db!!.getFormFromDatabase()
+
         }
 
-        val spinner = findViewById<Spinner>(R.id.spinner)
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.survey_type, android.R.layout.simple_spinner_dropdown_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-
-
+            val spinner = findViewById<Spinner>(R.id.spinner)
+            val adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.survey_type, android.R.layout.simple_spinner_dropdown_item
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
 
             //TODO Actually create the surveys
             //TODO Link survey to current login
-    }
 
-
+            //TODO DELETE
+        }
     }

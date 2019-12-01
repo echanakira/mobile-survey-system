@@ -14,6 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".main.ScanActivity"
+            android:label="@string/title_activity_scan"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +27,9 @@
         </activity>
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".main.RegistrationActivity" />
-        <activity android:name=".main.DashboardActivity"></activity>
-        <activity android:name=".forms.CreateSurveyActivity"></activity>
-        <activity android:name=".utils.ScanActivity"> </activity>
+        <activity android:name=".main.DashboardActivity" />
+        <activity android:name=".forms.CreateSurveyActivity" />
+        <activity android:name=".utils.ScanActivity"></activity>
     </application>
 
 </manifest>

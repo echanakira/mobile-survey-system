@@ -4,4 +4,5 @@
         <item>Restaurant</item>
         <item>Retail</item>
     </string-array>
+    <string name="title_activity_scan">ScanActivity</string>
 </resources>
