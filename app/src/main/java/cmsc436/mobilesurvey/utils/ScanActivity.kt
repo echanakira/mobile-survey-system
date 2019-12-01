@@ -1,61 +1,49 @@
 package cmsc436.mobilesurvey.utils
 
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
+import android.widget.Button
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import cmsc436.mobilesurvey.main.DashboardActivity
-import cmsc436.mobilesurvey.main.MainActivity
-import com.google.zxing.Result
-import me.dm7.barcodescanner.zxing.ZXingScannerView
-import java.util.jar.Manifest
+import cmsc436.mobilesurvey.R
+import com.google.zxing.integration.android.IntentIntegrator
+import android.widget.Toast
+import android.content.Intent
+import android.util.Log
+import cmsc436.mobilesurvey.forms.SurveyActivity
 
-class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
+class ScanActivity : AppCompatActivity(){
 
-    private var mScannerView: ZXingScannerView? = null
 
-    public override fun onCreate(state: Bundle?) {
-        super.onCreate(state)
-        mScannerView = ZXingScannerView(this)   // Programmatically initialize the scanner view
-        setContentView(mScannerView)                // Set the scanner view as the content view
-    }
+    private var scanBtn: Button? = null
 
-    public override fun onResume() {
-        super.onResume()
-        Log.i("TAG", "RESUME")
-        mScannerView!!.setResultHandler(this) // Register ourselves as a handler for scan results.
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_scan)
 
-        if (ContextCompat.checkSelfPermission(
-                this@ScanActivity,
-                android.Manifest.permission.READ_CONTACTS
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            val permissions = arrayOf(android.Manifest.permission.CAMERA)
-            ActivityCompat.requestPermissions(this, permissions, 0)
+        scanBtn = findViewById(R.id.scan)
+        scanBtn!!.setOnClickListener{
+            val scanner = IntentIntegrator(this)
+            Log.i("TAG", "INFO: Initiating Scan")
+            scanner.initiateScan()
         }
-        mScannerView!!.startCamera()          // Start camera on resume
     }
 
-    public override fun onPause() {
-        super.onPause()
-        mScannerView!!.stopCamera()           // Stop camera on pause
-    }
-
-    override fun handleResult(rawResult: Result) {
-        // Do something with the result here
-        Log.v("tag", "DEBUG  :" + rawResult.getText()); // Prints scan results
-        Log.v(
-            "tag",
-            "DEBUG: " + rawResult.getBarcodeFormat().toString()
-        ); // Prints the scan format (qrcode, pdf417 etc.)
-
-        DashboardActivity.tvresult!!.setText(rawResult.text)
-        onBackPressed()
-
-        // If you would like to resume scanning, call this method below:
-//        mScannerView!!.resumeCameraPreview(this);
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            if (result.contents == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+            } else {
+                val user = result.contents.split("&&&")[0]
+                val type = result.contents.split("&&&")[1]
+                //TODO: Return an intent with type and user
+                val intent = Intent(this@ScanActivity, SurveyActivity::class.java)
+                intent.putExtra("type", type)
+                intent.putExtra("user", user)
+                startActivity(intent)
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }

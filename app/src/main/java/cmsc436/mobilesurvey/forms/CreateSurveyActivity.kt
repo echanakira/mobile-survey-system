@@ -1,5 +1,6 @@
 package cmsc436.mobilesurvey.forms
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,10 @@ import cmsc436.mobilesurvey.R
 import kotlin.math.log
 
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.ViewGroup
+import android.view.Window.FEATURE_NO_TITLE
 import android.widget.*
 
 import cmsc436.mobilesurvey.utils.QRCodeUtils
@@ -25,34 +30,12 @@ class CreateSurveyActivity : AppCompatActivity() {
     }
 
     private var createButton: Button? = null
-    private var name: EditText? = null
-    private var QRCodeUtils: QRCodeUtils? = null
-    private var db: SurveyDatabaseHandler? = null
+    private var qrCodeUtils: QRCodeUtils? = QRCodeUtils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("TAG", "INFO: INSIDE ON CREATE")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_createsurvey)
-
-        name = findViewById(R.id.name)
-        createButton = findViewById(R.id.create)
-        QRCodeUtils = QRCodeUtils()
-        db = SurveyDatabaseHandler()
-
-        db!!.setupDB()
-
-        //button will generate code and store it in the database
-        createButton!!.setOnClickListener {
-            val qrcode = QRCodeUtils!!.generateQRCode(name!!.text.toString())
-            val bytes = QRCodeUtils!!.convertBitmapToByteArray(qrcode!!)
-            db!!.addFormToDatabase(name!!.text.toString(), "", bytes)
-            Toast.makeText(
-                this@CreateSurveyActivity,
-                "QRCode " + QRCodeUtils!!.convertCompressedByteArrayToBitmap(bytes) + " stringified",
-                Toast.LENGTH_SHORT
-            ).show()
-            db!!.getFormFromDatabase()
-        }
 
         val spinner = findViewById<Spinner>(R.id.spinner)
         val adapter = ArrayAdapter.createFromResource(
@@ -61,6 +44,42 @@ class CreateSurveyActivity : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+
+
+        createButton = findViewById(R.id.create)
+        qrCodeUtils = QRCodeUtils()
+
+        //button will generate code and store it in the database
+        //TODO: Pull from DB
+        createButton!!.setOnClickListener {
+            val qrcode = qrCodeUtils!!.generateQRCode(spinner.selectedItem.toString())
+            val bytes = qrCodeUtils!!.convertBitmapToByteArray(qrcode!!)
+
+            createQR(qrCodeUtils!!.convertCompressedByteArrayToBitmap(bytes))
+        }
+
+
+    }
+
+    fun createQR(qr: Bitmap){
+        val builder = Dialog(this)
+        builder.requestWindowFeature(FEATURE_NO_TITLE)
+        builder.window!!.setBackgroundDrawable(
+            ColorDrawable(Color.TRANSPARENT)
+        )
+        builder.setOnDismissListener {
+            //nothing;
+        }
+
+        val imageView = ImageView(this)
+        imageView.setImageBitmap(qr)
+        builder.addContentView(
+            imageView, RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+        builder.show()
     }
 
 

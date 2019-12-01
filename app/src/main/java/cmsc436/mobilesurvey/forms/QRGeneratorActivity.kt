@@ -24,70 +24,31 @@ import java.util.Calendar
 
 class QRGeneratorFragment : AppCompatActivity() {
     internal var bitmap: Bitmap? = null
-    private var etqr: EditText? = null
-    private var iv: ImageView? = null
+
+
     private var btn: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_createsurvey)
 
-//        iv = findViewById(R.id.iv) as ImageView
-//        etqr = findViewById(R.id.etqr) as EditText
+        //TODO: pull user name and Type from DB
         btn = findViewById(R.id.create) as Button
+        val user = ""
+        val type = ""
 
         btn!!.setOnClickListener {
             try {
-                bitmap = TextToImageEncode(etqr!!.text.toString())
-//                iv!!.setImageBitmap(bitmap)
-                val path = saveImage(bitmap)  //give read write permission
+                bitmap = TextToImageEncode(user+ "&&&" +type)
                 Toast.makeText(
                     this@QRGeneratorFragment,
-                    "QRCode saved to -> $path",
+                    "QRCode created",
                     Toast.LENGTH_SHORT
                 ).show()
             } catch (e: WriterException) {
                 e.printStackTrace()
             }
         }
-    }
-
-    fun saveImage(myBitmap: Bitmap?): String {
-        val bytes = ByteArrayOutputStream()
-        myBitmap!!.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
-        val wallpaperDirectory = File(
-            Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY
-        )
-        // have the object build the directory structure, if needed.
-
-        if (!wallpaperDirectory.exists()) {
-            Log.d("dirrrrrr", "" + wallpaperDirectory.mkdirs())
-            wallpaperDirectory.mkdirs()
-        }
-
-        try {
-            val f = File(
-                wallpaperDirectory, Calendar.getInstance()
-                    .timeInMillis.toString() + ".jpg"
-            )
-            f.createNewFile()   //give read write permission
-            val fo = FileOutputStream(f)
-            fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(
-                this,
-                arrayOf(f.path),
-                arrayOf("image/jpeg"), null
-            )
-            fo.close()
-            Log.d("TAG", "File Saved::--->" + f.absolutePath)
-
-            return f.absolutePath
-        } catch (e1: IOException) {
-            e1.printStackTrace()
-        }
-
-        return ""
-
     }
 
     @Throws(WriterException::class)

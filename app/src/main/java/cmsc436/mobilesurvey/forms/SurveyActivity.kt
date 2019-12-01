@@ -69,11 +69,16 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                     finish()
                 } else {
-                    for (doc in documents) {
-                        var user = User(doc)
-                        users!!.add(user)
-                        spinnerValues!!.add(user.name as String)
+                    if(intent.getStringExtra("name") != null){
+                        spinnerValues!!.add(intent.getStringExtra("name"))
+                    }else{
+                        for (doc in documents) {
+                            var user = User(doc)
+                            users!!.add(user)
+                            spinnerValues!!.add(user.name as String)
+                        }
                     }
+
 
                     val spinner = findViewById<Spinner>(R.id.restaurant_spinner)
 

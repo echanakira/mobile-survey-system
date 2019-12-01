@@ -6,6 +6,8 @@ import android.util.Base64
 import android.util.Log
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.forms.QRGeneratorFragment
+import cmsc436.mobilesurvey.forms.SurveyDatabaseHandler
+import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -18,6 +20,9 @@ class QRCodeUtils {
 
     var white = -0x1
     var black = -0x1000000
+
+
+
 
     fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
         var baos: ByteArrayOutputStream? = null
@@ -49,10 +54,23 @@ class QRCodeUtils {
         return BitmapFactory.decodeByteArray(src, 0, src.size)
     }
 
+    fun getUser(): String{
+        var name = ""
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            // Name, email address, and profile photo Url
+            name = user.displayName.toString()
+        }
+
+        return name
+    }
+
     //generateQRCode will use inoput info to store code.
-    fun generateQRCode(form: String): Bitmap? {
+    fun generateQRCode(type:String): Bitmap? {
+        val user = getUser()
+        Log.i("TAGS", "CURRENT USER = " +user)
         try {
-            val bitmap = TextToImageEncode(form)
+            val bitmap = TextToImageEncode(user + "&&&" +type)
             return bitmap
         } catch (e: WriterException) {
             e.printStackTrace()
@@ -85,5 +103,9 @@ class QRCodeUtils {
         val bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444)
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight)
         return bitmap
+    }
+
+    companion object {
+
     }
 }

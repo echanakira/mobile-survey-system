@@ -2,9 +2,7 @@ package cmsc436.mobilesurvey.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import android.widget.*
 import android.content.Intent
 import cmsc436.mobilesurvey.R
@@ -29,7 +27,8 @@ class InitialActivity : AppCompatActivity() {
         }
 
         scanButton!!.setOnClickListener {
-            val intent = Intent(this@InitialActivity,ScanActivity::class.java)
+            val intent = Intent(this@InitialActivity, ScanActivity::class.java)
+            Log.i("TAG", "Launch")
             startActivity(intent)
         }
     }
