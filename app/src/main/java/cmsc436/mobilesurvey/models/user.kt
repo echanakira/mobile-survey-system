@@ -1,4 +1,4 @@
-package cmsc436.mobilesurvey.utils
+package cmsc436.mobilesurvey.models
 
 import com.google.firebase.firestore.DocumentSnapshot
 

@@ -9,10 +9,12 @@ import android.widget.*
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.forms.CreateSurveyActivity
 import cmsc436.mobilesurvey.utils.*
+import cmsc436.mobilesurvey.main.*
 import com.google.firebase.auth.FirebaseAuth
 
 class DashboardActivity : AppCompatActivity() {
     private var logoutButton: Button? = null
+    private var viewResponsesButton: Button?=null
     private var createFormButton: Button? = null
     private var mAuth: FirebaseAuth? = null
 
@@ -25,10 +27,15 @@ class DashboardActivity : AppCompatActivity() {
         logoutButton = findViewById(R.id.logout)
         logoutButton!!.setOnClickListener { logout() }
 
-
         createFormButton = findViewById(R.id.form)
         createFormButton!!.setOnClickListener {
             val intent = Intent(this, CreateSurveyActivity::class.java)
+            startActivity(intent)
+        }
+
+        viewResponsesButton = findViewById(R.id.responses)
+        viewResponsesButton!!.setOnClickListener {
+            val intent = Intent(this, ResponsesActivity::class.java)
             startActivity(intent)
         }
 

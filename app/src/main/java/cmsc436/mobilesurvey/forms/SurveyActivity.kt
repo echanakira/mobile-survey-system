@@ -5,13 +5,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import cmsc436.mobilesurvey.R
+import cmsc436.mobilesurvey.models.User
 import kotlinx.android.synthetic.main.activity_restaurant.*
 import cmsc436.mobilesurvey.utils.*
 import cmsc436.mobilesurvey.utils.Database.db
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
-import java.time.LocalDateTime
-import java.util.*
 import kotlin.collections.ArrayList
 
 class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
