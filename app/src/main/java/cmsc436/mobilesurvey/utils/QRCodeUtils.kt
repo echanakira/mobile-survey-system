@@ -2,10 +2,8 @@ package cmsc436.mobilesurvey.utils
 
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
-import android.util.Base64
 import android.util.Log
-import cmsc436.mobilesurvey.R
-import cmsc436.mobilesurvey.forms.QRGeneratorFragment
+import cmsc436.mobilesurvey.main.QRGeneratorFragment
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException

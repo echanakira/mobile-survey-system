@@ -7,12 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import cmsc436.mobilesurvey.R
 import com.google.zxing.integration.android.IntentIntegrator
 import android.widget.Toast
-import com.google.zxing.integration.android.IntentResult
 import android.content.Intent
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 

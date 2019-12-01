@@ -16,9 +16,7 @@ class DashboardActivity : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private var createBtn: Button? = null
     private var scanBtn: ImageButton? = null
-
-
-    internal lateinit var userId: String
+//    internal lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +24,7 @@ class DashboardActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         logoutButton = findViewById(R.id.logout)
         logoutButton!!.setOnClickListener { logout() }
-        userId = intent.getStringExtra("userId")
+//        userId = intent.getStringExtra("userId")
 
         createBtn = findViewById(R.id.form)
         createBtn!!.setOnClickListener{

@@ -62,9 +62,5 @@ class CreateSurveyActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
 
-            //TODO Actually create the surveys
-            //TODO Link survey to current login
-
-            //TODO DELETE
         }
     }

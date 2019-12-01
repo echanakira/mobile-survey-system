@@ -1,12 +1,9 @@
-package cmsc436.mobilesurvey.forms
+package cmsc436.mobilesurvey.main
 import cmsc436.mobilesurvey.R
 
 import android.graphics.Bitmap
-import android.media.MediaScannerConnection
-import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,11 +12,6 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.Calendar
 
 class QRGeneratorFragment : AppCompatActivity() {
     internal var bitmap: Bitmap? = null
@@ -31,62 +23,22 @@ class QRGeneratorFragment : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_createsurvey)
 
-//        iv = findViewById(R.id.iv) as ImageView
-//        etqr = findViewById(R.id.etqr) as EditText
+
+        //TODO: pull user name and Type from DB
         btn = findViewById(R.id.create) as Button
 
         btn!!.setOnClickListener {
             try {
                 bitmap = TextToImageEncode(etqr!!.text.toString())
-//                iv!!.setImageBitmap(bitmap)
-                val path = saveImage(bitmap)  //give read write permission
                 Toast.makeText(
                     this@QRGeneratorFragment,
-                    "QRCode saved to -> $path",
+                    "QRCode created",
                     Toast.LENGTH_SHORT
                 ).show()
             } catch (e: WriterException) {
                 e.printStackTrace()
             }
         }
-    }
-
-    fun saveImage(myBitmap: Bitmap?): String {
-        val bytes = ByteArrayOutputStream()
-        myBitmap!!.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
-        val wallpaperDirectory = File(
-            Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY
-        )
-        // have the object build the directory structure, if needed.
-
-        if (!wallpaperDirectory.exists()) {
-            Log.d("dirrrrrr", "" + wallpaperDirectory.mkdirs())
-            wallpaperDirectory.mkdirs()
-        }
-
-        try {
-            val f = File(
-                wallpaperDirectory, Calendar.getInstance()
-                    .timeInMillis.toString() + ".jpg"
-            )
-            f.createNewFile()   //give read write permission
-            val fo = FileOutputStream(f)
-            fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(
-                this,
-                arrayOf(f.path),
-                arrayOf("image/jpeg"), null
-            )
-            fo.close()
-            Log.d("TAG", "File Saved::--->" + f.absolutePath)
-
-            return f.absolutePath
-        } catch (e1: IOException) {
-            e1.printStackTrace()
-        }
-
-        return ""
-
     }
 
     @Throws(WriterException::class)
@@ -96,7 +48,8 @@ class QRGeneratorFragment : AppCompatActivity() {
             bitMatrix = MultiFormatWriter().encode(
                 Value,
                 BarcodeFormat.QR_CODE,
-                QRcodeWidth, QRcodeWidth, null
+                QRcodeWidth,
+                QRcodeWidth, null
             )
 
         } catch (Illegalargumentexception: IllegalArgumentException) {
@@ -128,8 +81,6 @@ class QRGeneratorFragment : AppCompatActivity() {
     }
 
     companion object {
-
         val QRcodeWidth = 500
-        private val IMAGE_DIRECTORY = "/QRcodeDemonuts"
     }
 }
