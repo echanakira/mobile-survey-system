@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="View survey" />
+
+        <Spinner
+            android:id="@+id/test_spinner"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:entries="@array/survey_type" />
+
+        <Button
+            android:id="@+id/view_survey"
+            android:layout_weight="0.3"
+            android:layout_height="50dp"
+            android:text="Go"
+            android:textSize="14sp"
+            android:layout_width="wrap_content" />
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"

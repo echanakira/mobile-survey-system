@@ -12,6 +12,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amusement_name" />
+
+        <Spinner
+            android:id="@+id/restaurant_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
             android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -162,41 +172,26 @@
 
         </RadioGroup>
 
+
         <TextView
             android:id="@+id/five"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/amusement_five" />
 
-
-        <EditText
-            android:id="@+id/five_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine" />
-
-
-        <TextView
-            android:id="@+id/six"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/amusement_six" />
-
         <RadioGroup
-            android:id="@+id/six_group"
+            android:id="@+id/five_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <RadioButton
-                android:id="@+id/six_yes"
+                android:id="@+id/five_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Yes" />
 
             <RadioButton
-                android:id="@+id/six_no"
+                android:id="@+id/five_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/No" />
@@ -204,10 +199,10 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/seven"
+            android:id="@+id/six"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_seven" />
+            android:text="@string/amusement_six" />
 
         <EditText
             android:id="@+id/seven_text"
