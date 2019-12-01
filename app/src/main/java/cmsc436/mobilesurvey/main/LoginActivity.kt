@@ -87,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
         userEmail = findViewById(R.id.email)
         userPassword = findViewById(R.id.password)
 
-        loginBtn = findViewById(R.id.scan)
+        loginBtn = findViewById(R.id.login)
         progressBar = findViewById(R.id.progressBar)
     }
 
