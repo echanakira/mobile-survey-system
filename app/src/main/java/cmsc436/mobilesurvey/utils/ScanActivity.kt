@@ -11,7 +11,7 @@ import android.content.Intent
 import android.util.Log
 import cmsc436.mobilesurvey.forms.SurveyActivity
 
-class ScanActivity : AppCompatActivity(){
+class ScanActivity : AppCompatActivity() {
 
 
     private var scanBtn: Button? = null
@@ -21,7 +21,7 @@ class ScanActivity : AppCompatActivity(){
         setContentView(R.layout.activity_scan)
 
         scanBtn = findViewById(R.id.scan)
-        scanBtn!!.setOnClickListener{
+        scanBtn!!.setOnClickListener {
             val scanner = IntentIntegrator(this)
             Log.i("TAG", "INFO: Initiating Scan")
             scanner.initiateScan()
@@ -36,7 +36,9 @@ class ScanActivity : AppCompatActivity(){
             } else {
                 Toast.makeText(this, "Scanned", Toast.LENGTH_LONG).show()
                 val user = result.contents.split("&&&")[0]
-                val type = result.contents.split("&&&")[1]
+                var type = result.contents.split("&&&")[1]
+                type = getFirstWord(type).toLowerCase()
+
                 //TODO: Return an intent with type and user
                 val intent = Intent(this@ScanActivity, SurveyActivity::class.java)
                 intent.putExtra("type", type)
