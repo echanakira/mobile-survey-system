@@ -68,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
 
                     intent.putExtra("userId", userId)
+                    intent.putExtra("user", email.split("@")[0])
 
                     startActivity(intent)
                 } else {
@@ -78,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-
 
     }
 

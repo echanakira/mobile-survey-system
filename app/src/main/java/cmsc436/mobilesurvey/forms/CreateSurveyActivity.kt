@@ -30,6 +30,7 @@ class CreateSurveyActivity : AppCompatActivity() {
     }
 
     private var createButton: Button? = null
+    private var mUserView: TextView? = null
     private var qrCodeUtils: QRCodeUtils? = QRCodeUtils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,26 +38,30 @@ class CreateSurveyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_createsurvey)
 
-        val spinner = findViewById<Spinner>(R.id.spinner)
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.survey_type, android.R.layout.simple_spinner_dropdown_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
+//        val spinner = findViewById<Spinner>(R.id.spinner)
+//        val adapter = ArrayAdapter.createFromResource(
+//            this,
+//            R.array.survey_type, android.R.layout.simple_spinner_dropdown_item
+//        )
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        spinner.adapter = adapter
 
-
+        mUserView = findViewById(R.id.userView)
         createButton = findViewById(R.id.create)
         qrCodeUtils = QRCodeUtils()
+
+        var username = qrCodeUtils!!.getUser()[0].toUpperCase().toString()
+        username = username + qrCodeUtils!!.getUser().substring(1)
+
+        mUserView!!.text = mUserView!!.text.toString() + username
 
         //button will generate code and store it in the database
         //TODO: Pull from DB
         createButton!!.setOnClickListener {
-            val qrcode = qrCodeUtils!!.generateQRCode(spinner.selectedItem.toString())
+            val qrcode = qrCodeUtils!!.generateQRCode()
             val bytes = qrCodeUtils!!.convertBitmapToByteArray(qrcode!!)
             createQR(qrCodeUtils!!.convertCompressedByteArrayToBitmap(bytes))
         }
-
 
     }
 
