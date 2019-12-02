@@ -34,7 +34,6 @@ class ScanActivity : AppCompatActivity() {
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Scanned", Toast.LENGTH_LONG).show()
                 val user = result.contents.split("&&&")[0]
                 var type = result.contents.split("&&&")[1]
                 type = getFirstWord(type).toLowerCase()

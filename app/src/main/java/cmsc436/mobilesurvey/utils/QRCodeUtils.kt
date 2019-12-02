@@ -2,11 +2,7 @@ package cmsc436.mobilesurvey.utils
 
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
-import android.util.Base64
 import android.util.Log
-import cmsc436.mobilesurvey.R
-import cmsc436.mobilesurvey.forms.QRGeneratorFragment
-import cmsc436.mobilesurvey.forms.SurveyDatabaseHandler
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
@@ -70,7 +66,7 @@ class QRCodeUtils {
         val user = getUser()
         Log.i("TAGS", "CURRENT USER = " +user)
         try {
-            val bitmap = TextToImageEncode(user + "&&&" +type)
+            val bitmap = TextToImageEncode("TEMPORARY" + "&&&" +type)
             return bitmap
         } catch (e: WriterException) {
             e.printStackTrace()
@@ -84,7 +80,7 @@ class QRCodeUtils {
             bitMatrix = MultiFormatWriter().encode(
                 Value,
                 BarcodeFormat.QR_CODE,
-                QRGeneratorFragment.QRcodeWidth, QRGeneratorFragment.QRcodeWidth, null
+                500, 500, null
             )
         } catch (Illegalargumentexception: IllegalArgumentException) {
             return null
