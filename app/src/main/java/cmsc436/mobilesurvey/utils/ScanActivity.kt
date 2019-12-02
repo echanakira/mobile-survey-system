@@ -34,8 +34,8 @@ class ScanActivity : AppCompatActivity(){
             if (result.contents == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Scanned", Toast.LENGTH_LONG).show()
                 val user = result.contents.split("&&&")[0]
+                Toast.makeText(this, "Scanned " + user, Toast.LENGTH_LONG).show()
                 val type = result.contents.split("&&&")[1]
                 //TODO: Return an intent with type and user
                 val intent = Intent(this@ScanActivity, SurveyActivity::class.java)

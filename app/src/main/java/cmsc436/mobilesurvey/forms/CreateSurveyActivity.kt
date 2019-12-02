@@ -54,7 +54,6 @@ class CreateSurveyActivity : AppCompatActivity() {
         createButton!!.setOnClickListener {
             val qrcode = qrCodeUtils!!.generateQRCode(spinner.selectedItem.toString())
             val bytes = qrCodeUtils!!.convertBitmapToByteArray(qrcode!!)
-
             createQR(qrCodeUtils!!.convertCompressedByteArrayToBitmap(bytes))
         }
 
