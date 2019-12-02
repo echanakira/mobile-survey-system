@@ -127,6 +127,7 @@ class RegistrationActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                                         )
 
                                     intent.putExtra("userId", userId)
+                                    intent.putExtra("user", email.split("@")[0])
 
                                     startActivity(intent)
                                 }

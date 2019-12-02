@@ -21,8 +21,7 @@ class DashboardActivity : AppCompatActivity() {
     private var viewResponsesButton: Button? = null
     private var createFormButton: Button? = null
     private var mAuth: FirebaseAuth? = null
-    private var createBtn: Button? = null
-    private var scanBtn: ImageButton? = null
+    private var scanBtn: Button? = null
 
 
     internal lateinit var userId: String
@@ -37,6 +36,7 @@ class DashboardActivity : AppCompatActivity() {
         createFormButton = findViewById(R.id.form)
         createFormButton!!.setOnClickListener {
             val intent = Intent(this, CreateSurveyActivity::class.java)
+            intent.putExtra("user",this.intent.getStringExtra("user"))
             startActivity(intent)
         }
 
@@ -48,15 +48,11 @@ class DashboardActivity : AppCompatActivity() {
 
         userId = mAuth!!.currentUser!!.uid
 
-
-        tvresult = findViewById(R.id.tvresult) as TextView
         scanBtn = findViewById(R.id.scan)
         scanBtn!!.setOnClickListener {
             val intent = Intent(this@DashboardActivity, ScanActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 
     override fun onStart() {

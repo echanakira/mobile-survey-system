@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,9 +10,7 @@
 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -18,13 +18,13 @@
 
             <Button
                 android:id="@+id/form"
-                android:layout_width="223dp"
-                android:layout_height="64dp"
+                android:layout_width="229dp"
+                android:layout_height="79dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="203dp"
+                android:layout_marginTop="178dp"
                 android:layout_marginEnd="100dp"
-                android:text="Create Form"
+                android:text="Generate Form"
                 android:textSize="22sp" />
 
             <Button
@@ -37,25 +37,18 @@
                 android:layout_marginEnd="99dp"
                 android:text="View Responses"
                 android:textSize="22sp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvresult"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Result will be here"/>
 
-
-            <ImageButton
-                    android:id="@+id/scan"
+            <Button
+                android:id="@+id/scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="539dp"
-                android:layout_marginEnd="154dp"
-                app:srcCompat="@android:drawable/sym_def_app_icon" />
+                android:layout_marginStart="134dp"
+                android:layout_marginTop="490dp"
+                android:layout_marginEnd="155dp"
+                android:text="Scan QR Code" />
 
             <Button
                 android:id="@+id/logout"
@@ -65,10 +58,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="120dp"
-                android:layout_marginTop="647dp"
-                android:layout_marginEnd="122dp"
-                android:layout_marginBottom="36dp"
+                android:layout_marginStart="108dp"
+                android:layout_marginTop="598dp"
+                android:layout_marginEnd="133dp"
+                android:layout_marginBottom="85dp"
                 android:text="Logout" />
 
         </RelativeLayout>
