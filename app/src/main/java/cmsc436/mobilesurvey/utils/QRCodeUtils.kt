@@ -113,41 +113,6 @@ class QRCodeUtils {
         return doAll()
     }
 
-//    fun createQR(qr: Bitmap){
-//        val builder = Dialog(this)
-//        builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        builder.window!!.setBackgroundDrawable(
-//            ColorDrawable(Color.TRANSPARENT)
-//        )
-//        builder.setOnDismissListener {
-//            //nothing;
-//        }
-//
-//        val imageView = ImageView(this)
-//        imageView.setImageBitmap(qr)
-//        builder.addContentView(
-//            imageView, RelativeLayout.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT
-//            )
-//        )
-//        builder.show()
-//    }
-
-
-    //generateQRCode will use inoput info to store code.
-//    fun generateQRCode(): Bitmap? {
-//        val user = getUser()
-//        val type = getType()
-//        try {
-//            val bitmap = TextToImageEncode(user  + "&&&" +type)
-//            return bitmap
-//        } catch (e: WriterException) {
-//            e.printStackTrace()
-//            return null
-//        }
-//    }
-
     fun TextToImageEncode(Value: String): Bitmap? {
         val bitMatrix: BitMatrix
         try {
