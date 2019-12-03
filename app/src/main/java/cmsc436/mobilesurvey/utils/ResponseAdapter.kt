@@ -38,7 +38,15 @@ class ResponseAdapter(private val responseList: List<Response>) :
         val note = responseList[position]
 
         holder!!.title.text = note.placeName as String
-        holder.content.text = note.placeId as String
+        var text = "1)" + note.answerOne + "\n"
+        text += "2)" + note.answerTwo + "\n"
+        text += "3)" + note.answerThree + "\n"
+        text += "4)" + note.answerFour + "\n"
+        text += "5)" + note.answerFive + "\n"
+        text += "6)" + note.answerSix + "\n"
+        text += "7)" + note.answerSeven + "\n"
+
+        holder.content.text = text
     }
 
     // Return the size of your dataset (invoked by the layout manager)
