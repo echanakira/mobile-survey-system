@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
     public fun loginUserAccount() {
         progressBar!!.visibility = View.VISIBLE
 
-        val email: String = userEmail?.text.toString()
+        val email: String = userEmail?.text.toString().toLowerCase()
         val password: String = userPassword?.text.toString()
 
         if (TextUtils.isEmpty(email)) {

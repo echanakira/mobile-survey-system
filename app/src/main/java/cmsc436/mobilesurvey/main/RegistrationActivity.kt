@@ -10,11 +10,7 @@ import cmsc436.mobilesurvey.R
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.Collections.replaceAll
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
 import cmsc436.mobilesurvey.utils.getFirstWord
 
 class RegistrationActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -62,8 +58,8 @@ class RegistrationActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private fun registerNewUser() {
         progressBar!!.visibility = View.VISIBLE
 
-        val name: String = nameTV!!.text.toString()
-        val email: String = emailTV!!.text.toString()
+        val name: String = nameTV!!.text.toString().toLowerCase()
+        val email: String = emailTV!!.text.toString().toLowerCase()
         val password: String = passwordTV!!.text.toString()
 
         if (TextUtils.isEmpty(name)) {
