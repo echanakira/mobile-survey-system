@@ -20,6 +20,8 @@ import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import android.view.Window.FEATURE_NO_TITLE
 import android.widget.*
+import cmsc436.mobilesurvey.models.User
+import cmsc436.mobilesurvey.utils.Database
 
 import cmsc436.mobilesurvey.utils.QRCodeUtils
 
@@ -58,9 +60,24 @@ class CreateSurveyActivity : AppCompatActivity() {
         //button will generate code and store it in the database
         //TODO: Pull from DB
         createButton!!.setOnClickListener {
-            val qrcode = qrCodeUtils!!.generateQRCode()
-            val bytes = qrCodeUtils!!.convertBitmapToByteArray(qrcode!!)
-            createQR(qrCodeUtils!!.convertCompressedByteArrayToBitmap(bytes))
+            Database.db.collection("users").whereEqualTo("name", qrCodeUtils!!.getUser())
+                .get()
+                .addOnSuccessListener { documents ->
+                    lateinit var user: User
+                    for (doc in documents) {
+                        user = User(doc)
+                        Log.i("TAG", "DEBUG: Current user = " + user.name)
+                        Log.i("TAG", "DEBUG: User type = " + user.type)
+                        Log.i("TAG", "DEBUG: Doc = " + doc)
+                        break
+                    }
+                    user.type.toString()
+                    val bitmap = qrCodeUtils!!.TextToImageEncode(qrCodeUtils!!.getUser() + "&&&" + user.type.toString())
+                    val bytes = qrCodeUtils!!.convertBitmapToByteArray(bitmap!!)
+                    val code = qrCodeUtils!!.convertCompressedByteArrayToBitmap(bytes)
+                    createQR(code)
+                }
+
         }
 
     }

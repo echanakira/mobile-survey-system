@@ -1,11 +1,14 @@
 package cmsc436.mobilesurvey.utils
 
+import android.app.Dialog
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.*
 import cmsc436.mobilesurvey.R
 import cmsc436.mobilesurvey.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -66,40 +69,84 @@ class QRCodeUtils {
         return  FirebaseAuth.getInstance().currentUser!!.email!!.split("@")[0]
     }
 
-    fun getType(): String {
-        var type =""
-        Log.i("TAG", "DEBUG: Getting user " + getUser())
+//    fun getType(): String {
+//
+//       fun testtest(): String {
+//           lateinit var user: User;
+//           Database.db.collection("users").whereEqualTo("name", getUser())
+//               .get()
+//               .addOnSuccessListener { documents ->
+//                   for (doc in documents) {
+//                       user = User(doc)
+//                       Log.i("TAG", "DEBUG: Current user = " + user.name)
+//                       Log.i("TAG", "DEBUG: User type = " + user.type)
+//                       Log.i("TAG", "DEBUG: Doc = " + doc)
+//                       break
+//                   }
+//                   user.type.toString()
+//                   val bitmap = TextToImageEncode(getUser() + "&&&" + user.type.toString())
+//
+//               }
+//       }
+//
+//
+//        return testtest()
+//    }
 
+    fun doAll(){
         Database.db.collection("users").whereEqualTo("name", getUser())
             .get()
             .addOnSuccessListener { documents ->
-                var type =""
-                for(doc in documents){
-                    var user = User(doc)
+                lateinit var user: User
+                for (doc in documents) {
+                    user = User(doc)
                     Log.i("TAG", "DEBUG: Current user = " + user.name)
                     Log.i("TAG", "DEBUG: User type = " + user.type)
                     Log.i("TAG", "DEBUG: Doc = " + doc)
+                    break
                 }
+                user.type.toString()
+                val bitmap = TextToImageEncode(getUser() + "&&&" + user.type.toString())
+                val bytes = convertBitmapToByteArray(bitmap!!)
+                val code = convertCompressedByteArrayToBitmap(bytes)
             }
-            .addOnCompleteListener{
-                Log.i("TAG", "DEBUG: Completed task")
-            }
-
-        return type
+        return doAll()
     }
+
+//    fun createQR(qr: Bitmap){
+//        val builder = Dialog(this)
+//        builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        builder.window!!.setBackgroundDrawable(
+//            ColorDrawable(Color.TRANSPARENT)
+//        )
+//        builder.setOnDismissListener {
+//            //nothing;
+//        }
+//
+//        val imageView = ImageView(this)
+//        imageView.setImageBitmap(qr)
+//        builder.addContentView(
+//            imageView, RelativeLayout.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+//            )
+//        )
+//        builder.show()
+//    }
+
 
     //generateQRCode will use inoput info to store code.
-    fun generateQRCode(): Bitmap? {
-        val user = getUser()
-        val type = getType()
-        try {
-            val bitmap = TextToImageEncode(user  + "&&&" +type)
-            return bitmap
-        } catch (e: WriterException) {
-            e.printStackTrace()
-            return null
-        }
-    }
+//    fun generateQRCode(): Bitmap? {
+//        val user = getUser()
+//        val type = getType()
+//        try {
+//            val bitmap = TextToImageEncode(user  + "&&&" +type)
+//            return bitmap
+//        } catch (e: WriterException) {
+//            e.printStackTrace()
+//            return null
+//        }
+//    }
 
     fun TextToImageEncode(Value: String): Bitmap? {
         val bitMatrix: BitMatrix
