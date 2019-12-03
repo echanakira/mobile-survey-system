@@ -31,6 +31,7 @@ class CreateSurveyActivity : AppCompatActivity() {
         RETAIL
     }
 
+    private var mAuth: FirebaseAuth? = null
     private var createButton: Button? = null
     private var mUserView: TextView? = null
     private var qrCodeUtils: QRCodeUtils? = QRCodeUtils()
@@ -39,6 +40,8 @@ class CreateSurveyActivity : AppCompatActivity() {
         Log.i("TAG", "INFO: INSIDE ON CREATE")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_createsurvey)
+        mAuth = FirebaseAuth.getInstance()
+
 
 //        val spinner = findViewById<Spinner>(R.id.spinner)
 //        val adapter = ArrayAdapter.createFromResource(
@@ -60,19 +63,13 @@ class CreateSurveyActivity : AppCompatActivity() {
         //button will generate code and store it in the database
         //TODO: Pull from DB
         createButton!!.setOnClickListener {
-            Database.db.collection("users").whereEqualTo("name", qrCodeUtils!!.getUser())
+            Database.db.collection("users").document(mAuth!!.currentUser!!.uid)
                 .get()
-                .addOnSuccessListener { documents ->
+                .addOnSuccessListener { document ->
                     lateinit var user: User
-                    for (doc in documents) {
-                        user = User(doc)
-                        Log.i("TAG", "DEBUG: Current user = " + user.name)
-                        Log.i("TAG", "DEBUG: User type = " + user.type)
-                        Log.i("TAG", "DEBUG: Doc = " + doc)
-                        break
-                    }
+                    user = User(document)
                     user.type.toString()
-                    val bitmap = qrCodeUtils!!.TextToImageEncode(qrCodeUtils!!.getUser() + "&&&" + user.type.toString())
+                    val bitmap = qrCodeUtils!!.TextToImageEncode(qrCodeUtils!!.getUser() + "&&&" + user.type.toString() + "&&&" + user.id.toString())
                     val bytes = qrCodeUtils!!.convertBitmapToByteArray(bitmap!!)
                     val code = qrCodeUtils!!.convertCompressedByteArrayToBitmap(bytes)
                     createQR(code)

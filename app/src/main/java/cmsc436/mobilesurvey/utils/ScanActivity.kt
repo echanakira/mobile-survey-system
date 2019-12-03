@@ -36,12 +36,14 @@ class ScanActivity : AppCompatActivity() {
             } else {
                 val user = result.contents.split("&&&")[0]
                 var type = result.contents.split("&&&")[1]
+                var placeId = result.contents.split("&&&")[2]
                 type = getFirstWord(type).toLowerCase()
 
                 //TODO: Return an intent with type and user
                 val intent = Intent(this@ScanActivity, SurveyActivity::class.java)
                 intent.putExtra("type", type)
                 intent.putExtra("user", user)
+                intent.putExtra("placeId", placeId)
                 startActivity(intent)
             }
         } else {

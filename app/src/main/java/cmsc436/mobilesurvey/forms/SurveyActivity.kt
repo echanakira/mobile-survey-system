@@ -1,6 +1,7 @@
 package cmsc436.mobilesurvey.forms
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var surveyType: String? = null
     private var selectedPlaceName: String? = null
     private var selectedPlaceId: String? = null
+    private var originalPlaceId: String? = null
     private var users: ArrayList<User>? = arrayListOf()
     private var spinnerValues: ArrayList<String>? = arrayListOf()
 
@@ -35,6 +37,7 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val retail: String = getFirstWord(getString(R.string.retail))
         val amusement: String = getFirstWord(getString(R.string.amusement))
         val type: String = intent.getStringExtra("type")
+        originalPlaceId = intent.getStringExtra("placeId")
 
         when (type) {
             restaurant -> {
@@ -75,10 +78,25 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         for (doc in documents) {
                             var user = User(doc)
                             users!!.add(user)
-                            spinnerValues!!.add(user.name as String)
                         }
                     }
 
+                    users!!.sortBy { it.name?.toString() }
+
+                    var selectedIndex: Int? = 0
+                    var index: Int? = 0
+                    for (user in users!!.iterator()) {
+                        index = index?.plus(1)
+                        spinnerValues!!.add(user.name as String)
+
+                        if (originalPlaceId == user.id) {
+                            selectedIndex = index
+                            selectedPlaceId = user.id as String?
+                            selectedPlaceName = user.name as String?
+                        }
+                    }
+
+                    selectedIndex = selectedIndex?.minus(1)
 
                     val spinner = findViewById<Spinner>(R.id.restaurant_spinner)
 
@@ -86,11 +104,10 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         this,
                         android.R.layout.simple_spinner_item, spinnerValues
                     )
-
                     adapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinner!!.onItemSelectedListener = this
-                    spinner!!.setSelection(0)
                     spinner!!.adapter = adapter
+                    spinner!!.setSelection(selectedIndex!!)
                 }
             }
             .addOnFailureListener { exception ->
@@ -142,7 +159,6 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
-        // parent.getItemAtPosition(pos) to get value
         var value = parent.getItemAtPosition(pos)
         selectedPlaceName = value.toString()
 
@@ -154,7 +170,6 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
-        // Another interface callback
     }
 
     private fun submitData() {
@@ -171,8 +186,8 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             return
         }
 
-        val six: String = answerSix!!.text.toString()
-        val seven: String = answerSeven!!.text.toString()
+        val six: String = answerSix?.text.toString()
+        val seven: String = answerSeven?.text.toString()
 
         val data = hashMapOf(
             "1" to answerOne,
