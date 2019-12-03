@@ -13,7 +13,7 @@ class InitialActivity : AppCompatActivity() {
     private var loginButton: Button? = null
     private var scanButton: Button? = null
 
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_initial)
 
@@ -22,7 +22,7 @@ class InitialActivity : AppCompatActivity() {
 
         loginButton!!.setOnClickListener {
 
-            val intent = Intent(this@InitialActivity,MainActivity::class.java)
+            val intent = Intent(this@InitialActivity, MainActivity::class.java)
             startActivity(intent)
         }
 

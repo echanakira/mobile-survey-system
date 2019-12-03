@@ -36,7 +36,7 @@ class DashboardActivity : AppCompatActivity() {
         createFormButton = findViewById(R.id.form)
         createFormButton!!.setOnClickListener {
             val intent = Intent(this, CreateSurveyActivity::class.java)
-            intent.putExtra("user",this.intent.getStringExtra("user"))
+            intent.putExtra("user", this.intent.getStringExtra("user"))
             startActivity(intent)
         }
 

@@ -23,8 +23,6 @@ class QRCodeUtils {
     var black = -0x1000000
 
 
-
-
     fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
         var baos: ByteArrayOutputStream? = null
         try {
@@ -55,7 +53,7 @@ class QRCodeUtils {
         return BitmapFactory.decodeByteArray(src, 0, src.size)
     }
 
-    fun getUser(): String{
+    fun getUser(): String {
 //        var name = ""
 //        val user = FirebaseAuth.getInstance().currentUser
 //        user?.let {
@@ -63,37 +61,37 @@ class QRCodeUtils {
 //            name = user.displayName.toString()
 //        }
 
-        return  FirebaseAuth.getInstance().currentUser!!.email!!.split("@")[0]
+        return FirebaseAuth.getInstance().currentUser!!.email!!.split("@")[0]
     }
 
     fun getType(): String {
-        var type =""
+        var type = ""
         Log.i("TAG", "DEBUG: Getting user " + getUser())
 
         Database.db.collection("users").whereEqualTo("name", getUser())
             .get()
             .addOnSuccessListener { documents ->
-                var type =""
-                for(doc in documents){
+                var type = ""
+                for (doc in documents) {
                     var user = User(doc)
                     Log.i("TAG", "DEBUG: Current user = " + user.name)
                     Log.i("TAG", "DEBUG: User type = " + user.type)
                     Log.i("TAG", "DEBUG: Doc = " + doc)
                 }
             }
-            .addOnCompleteListener{
+            .addOnCompleteListener {
                 Log.i("TAG", "DEBUG: Completed task")
             }
 
         return type
     }
 
-    //generateQRCode will use inoput info to store code.
+    //generateQRCode will use input info to store code.
     fun generateQRCode(): Bitmap? {
         val user = getUser()
         val type = getType()
         try {
-            val bitmap = TextToImageEncode(user  + "&&&" +type)
+            val bitmap = TextToImageEncode(user + "&&&" + type)
             return bitmap
         } catch (e: WriterException) {
             e.printStackTrace()

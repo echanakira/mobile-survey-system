@@ -69,9 +69,9 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                     finish()
                 } else {
-                    if(intent.getStringExtra("name") != null){
+                    if (intent.getStringExtra("name") != null) {
                         spinnerValues!!.add(intent.getStringExtra("name"))
-                    }else{
+                    } else {
                         for (doc in documents) {
                             var user = User(doc)
                             users!!.add(user)
@@ -179,7 +179,7 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "2" to answerTwo,
             "3" to answerThree,
             "4" to answerFour,
-            "5" to answerFour,
+            "5" to answerFive,
             "6" to six,
             "7" to seven,
             "place_id" to selectedPlaceId,

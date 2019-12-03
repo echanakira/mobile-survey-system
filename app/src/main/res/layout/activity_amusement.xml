@@ -4,7 +4,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_name" />
+            android:text="@string/amusement_name"
+            android:textSize="17dp" />
 
         <Spinner
             android:id="@+id/restaurant_spinner"
@@ -25,7 +28,9 @@
             android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_one" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/amusement_one"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/one_group"
@@ -67,7 +72,9 @@
             android:id="@+id/two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_two" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/amusement_two"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/two_group"
@@ -109,7 +116,9 @@
             android:id="@+id/three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_three" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/amusement_three"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/three_group"
@@ -151,7 +160,9 @@
             android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_four" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/amusement_four"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/four_group"
@@ -177,7 +188,9 @@
             android:id="@+id/five"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_five" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/amusement_five"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/five_group"
@@ -202,7 +215,9 @@
             android:id="@+id/six"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/amusement_six" />
+            android:layout_marginTop="10dp"
+            android:text="@string/amusement_six"
+            android:textSize="17dp" />
 
         <EditText
             android:id="@+id/seven_text"
@@ -216,7 +231,8 @@
             android:id="@+id/eight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/comments" />
+            android:text="@string/comments"
+            android:textSize="17dp" />
 
         <EditText
             android:id="@+id/eight_comments"

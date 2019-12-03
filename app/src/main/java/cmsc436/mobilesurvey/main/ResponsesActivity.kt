@@ -1,8 +1,10 @@
 package cmsc436.mobilesurvey.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import cmsc436.mobilesurvey.main.ResponseDetailActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -51,7 +53,19 @@ class ResponsesActivity : AppCompatActivity() {
                     responseList.add(resp)
                 }
 
-                mAdapter = ResponseAdapter(responseList)
+
+                mAdapter = ResponseAdapter(responseList) { response: Response, _: Int ->
+                    val intent =
+                        Intent(
+                            this,
+                            ResponseDetailActivity::class.java
+                        )
+
+                    intent.putExtra("id", response.id.toString())
+
+                    startActivity(intent)
+                }
+
                 responses_view.adapter = mAdapter
             })
     }
@@ -70,7 +84,19 @@ class ResponsesActivity : AppCompatActivity() {
                         responseList.add(resp)
                     }
 
-                    mAdapter = ResponseAdapter(responseList)
+                    mAdapter = ResponseAdapter(responseList) { response: Response, _: Int ->
+                        val intent =
+                            Intent(
+                                this,
+                                ResponseDetailActivity::class.java
+                            )
+
+
+                        intent.putExtra("id", response.id.toString())
+
+                        startActivity(intent)
+                    }
+
                     val mLayoutManager = LinearLayoutManager(applicationContext)
                     responses_view.layoutManager = mLayoutManager
                     responses_view.adapter = mAdapter

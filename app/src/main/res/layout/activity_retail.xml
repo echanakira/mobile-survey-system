@@ -4,7 +4,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_name" />
+            android:text="@string/retail_name"
+            android:textSize="17dp" />
 
         <Spinner
             android:id="@+id/restaurant_spinner"
@@ -25,7 +28,9 @@
             android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_one" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/retail_one"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/one_group"
@@ -56,7 +61,9 @@
             android:id="@+id/two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_two" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/retail_two"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/two_group"
@@ -98,7 +105,9 @@
             android:id="@+id/three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_three" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/retail_three"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/three_group"
@@ -140,7 +149,9 @@
             android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_four" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/retail_four"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/four_group"
@@ -151,7 +162,7 @@
                 android:id="@+id/four_bad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Bad"/>
+                android:text="@string/Bad" />
 
             <RadioButton
                 android:id="@+id/four_mediocre"
@@ -182,12 +193,14 @@
             android:id="@+id/five"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_five" />
+            android:layout_marginVertical="10dp"
+            android:text="@string/retail_five"
+            android:textSize="17dp" />
 
         <RadioGroup
             android:id="@+id/five_group"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <RadioButton
                 android:id="@+id/five_yes"
@@ -206,7 +219,9 @@
             android:id="@+id/six"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/retail_six"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/retail_six"
+            android:textSize="17dp" />
 
         <EditText
             android:id="@+id/six_text"
@@ -220,7 +235,8 @@
             android:id="@+id/seven"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/comments" />
+            android:text="@string/comments"
+            android:textSize="17dp" />
 
         <EditText
             android:id="@+id/seven_comments"
