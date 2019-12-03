@@ -56,15 +56,8 @@ class QRCodeUtils {
         return BitmapFactory.decodeByteArray(src, 0, src.size)
     }
 
-    fun getUser(): String {
-//        var name = ""
-//        val user = FirebaseAuth.getInstance().currentUser
-//        user?.let {
-//            // Name, email address, and profile photo Url
-//            name = user.displayName.toString()
-//        }
-
-        return FirebaseAuth.getInstance().currentUser!!.email!!.split("@")[0]
+    fun getUser(): String{
+        return  FirebaseAuth.getInstance().currentUser!!.email!!.split("@")[0]
     }
 
 //    fun getType(): String {
@@ -92,7 +85,7 @@ class QRCodeUtils {
 //    }
 
     fun doAll(){
-        Database.db.collection("users").whereEqualTo("name", getUser())
+        Database.db.collection("users").whereEqualTo("email", FirebaseAuth.getInstance().currentUser!!.email)
             .get()
             .addOnSuccessListener { documents ->
                 lateinit var user: User
