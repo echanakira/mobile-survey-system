@@ -26,8 +26,6 @@ class QRCodeUtils {
     var black = -0x1000000
 
 
-
-
     fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
         var baos: ByteArrayOutputStream? = null
         try {

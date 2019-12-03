@@ -31,6 +31,7 @@
         <activity android:name=".forms.CreateSurveyActivity"></activity>
         <activity android:name=".forms.SurveyActivity"></activity>
         <activity android:name=".utils.ScanActivity"> </activity>
+        <activity android:name=".main.ResponseDetailActivity"> </activity>
     </application>
 
 </manifest>

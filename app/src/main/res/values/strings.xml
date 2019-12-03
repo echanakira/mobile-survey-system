@@ -35,14 +35,14 @@
 
     <string name="retail_one">1) How difficult was it to find what you were looking for?</string>
     <string name="retail_two">2) How would you rate the quality of the service?</string>
-    <string name="retail_three">3)How would you rate the cleanliness of the store?</string>
+    <string name="retail_three">3) How would you rate the cleanliness of the store?</string>
     <string name="retail_four">4) How would you rate the atmosphere of the store?</string>
     <string name="retail_five">5) Would you recommend this store to friends and family?</string>
     <string name="retail_six">6) If no, why not?"</string>
 
     <string name="restaurant_one">1) How would you rate the quality of the food?</string>
     <string name="restaurant_two">2) How would you rate the quality of the service?</string>
-    <string name="restaurant_three">3)How would you rate the cleanliness of the restaurant?</string>
+    <string name="restaurant_three">3) How would you rate the cleanliness of the restaurant?</string>
     <string name="restaurant_four">4) How would you rate the atmosphere of the restaurant?</string>
     <string name="restaurant_five">5) Would you recommend this restaurant to friends and family?</string>
     <string name="restaurant_six">6) If no, why not?</string>

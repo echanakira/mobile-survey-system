@@ -69,9 +69,9 @@ class SurveyActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                     finish()
                 } else {
-                    if(intent.getStringExtra("name") != null){
+                    if (intent.getStringExtra("name") != null) {
                         spinnerValues!!.add(intent.getStringExtra("name"))
-                    }else{
+                    } else {
                         for (doc in documents) {
                             var user = User(doc)
                             users!!.add(user)

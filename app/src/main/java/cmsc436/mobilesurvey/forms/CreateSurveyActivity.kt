@@ -82,7 +82,7 @@ class CreateSurveyActivity : AppCompatActivity() {
 
     }
 
-    fun createQR(qr: Bitmap){
+    fun createQR(qr: Bitmap) {
         val builder = Dialog(this)
         builder.requestWindowFeature(FEATURE_NO_TITLE)
         builder.window!!.setBackgroundDrawable(

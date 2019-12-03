@@ -1,5 +1,6 @@
 package cmsc436.mobilesurvey.models
 
+import java.io.Serializable
 import com.google.firebase.firestore.DocumentSnapshot
 
 data class Response(val snap: DocumentSnapshot) {
@@ -9,6 +10,7 @@ data class Response(val snap: DocumentSnapshot) {
     var placeId: Any? = data!!["place_id"]
     var placeName: Any? = data!!["place_name"]
     var timestamp: Any? = data!!["timestamp"]
+    var type: Any? = data!!["type"]
     var answerOne: Any? = data!!["1"]
     var answerTwo: Any? = data!!["2"]
     var answerThree: Any? = data!!["3"]
