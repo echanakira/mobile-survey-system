@@ -60,7 +60,7 @@ class CreateSurveyActivity : AppCompatActivity() {
         //button will generate code and store it in the database
         //TODO: Pull from DB
         createButton!!.setOnClickListener {
-            Database.db.collection("users").whereEqualTo("name", qrCodeUtils!!.getUser())
+            Database.db.collection("users").whereEqualTo("email", FirebaseAuth.getInstance().currentUser!!.email)
                 .get()
                 .addOnSuccessListener { documents ->
                     lateinit var user: User
