@@ -220,7 +220,7 @@
             android:textSize="17dp" />
 
         <EditText
-            android:id="@+id/seven_text"
+            android:id="@+id/six_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -228,14 +228,14 @@
             android:inputType="textMultiLine" />
 
         <TextView
-            android:id="@+id/eight"
+            android:id="@+id/seven"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/comments"
             android:textSize="17dp" />
 
         <EditText
-            android:id="@+id/eight_comments"
+            android:id="@+id/seven_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
